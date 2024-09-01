@@ -252,6 +252,7 @@ interface PageProperties {
 interface PageProperty {
   id: string
   type: string
+  formula: FormulaProperty
 
   title?: RichTextObject[]
   rich_text?: RichTextObject[]
@@ -260,7 +261,6 @@ interface PageProperty {
   status?: StatusProperty
   multi_select?: SelectProperty[]
   date?: DateProperty
-  formula?: FormulaProperty
   relation?: RelationProperty[]
   rollup?: RollupProperty
   people?: UserObject[]

@@ -43,8 +43,8 @@ const getAllPages = async () => {
     return {
       id: result.id,
       last_edited_time: result.last_edited_time,
-      slug: result.properties.Slug.rich_text
-        ? result.properties.Slug.rich_text[0].plain_text
+      slug: result.properties.Slug.formula.string
+        ? result.properties.Slug.formula.string
         : '',
     };
   });
