@@ -916,7 +916,7 @@ async function _getSyncedBlockChildren(block: Block): Promise<Block[]> {
 
 function _validPageObject(pageObject: responses.PageObject): boolean {
   const prop = pageObject.properties
-  const slug_id = String(prop.Slug.formula.string);
+  const slug_id = String(prop.Slug.formula.string)
 
   return (
     !!prop.Page.title &&
@@ -978,9 +978,7 @@ function _buildPost(pageObject: responses.PageObject): Post {
       : '',
     Icon: icon,
     Cover: cover,
-    Slug: prop.Slug.formula.string
-      ? String(prop.Slug.formula.string)
-      : '',
+    Slug: prop.Slug.formula.string ? String(prop.Slug.formula.string) : '',
     Date: prop.Date.date ? prop.Date.date.start : '',
     Tags: prop.Tags.multi_select ? prop.Tags.multi_select : [],
     Excerpt:
