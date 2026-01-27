@@ -4,14 +4,17 @@ import { getPostLink } from '../lib/blog-helpers.ts'
 
 export interface Props {
   post: Post
+  showReadMore?: boolean
 }
 
-const { post } = Astro.props
+const { post, showReadMore = false } = Astro.props
 ---
 
-<div class="read-more-link">
-  <a href={getPostLink(post.Slug)}>→Read more</a>
-</div>
+{showReadMore && (
+  <div class="read-more-link">
+    <a href={getPostLink(post.Slug)}>→Read more</a>
+  </div>
+)}
 
 <style>
   .read-more-link {
