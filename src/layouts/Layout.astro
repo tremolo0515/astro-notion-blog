@@ -441,8 +441,38 @@ if (database.Icon && database.Icon.Type === 'file') {
     min-height: 0.9rem;
   }
 
-  /* ===== note-like: ONLY inside main content ===== */
-  /* 本文の基準サイズを上げる */
+/* ===== note-like: ONLY inside main content ===== */
+/* スマホ（デフォルト）：必要最低限だけ（＝ほぼ触らない） */
+
+/* 共通でOKなもの */
+div.content a {
+  color: #2f80ed;
+  text-decoration: none;
+}
+div.content a:hover {
+  text-decoration: underline;
+}
+
+div.content code {
+  font-size: 0.95em;
+  color: #c7254e;
+  background: rgba(0, 0, 0, 0.06);
+  padding: 0.15rem 0.3rem;
+  border-radius: 4px;
+}
+
+div.content hr {
+  background-color: #eee;
+}
+
+/* キャプション中央寄せ（本文内のみ） */
+div.content .post-body figure > :is(figcaption, p, div, span) {
+  text-align: center;
+}
+
+/* ===== PCだけカスタマイズ（ここが本体） ===== */
+@media (min-width: 768px) {
+  /* 本文の基準サイズを上げる（PCのみ） */
   div.content p,
   div.content li {
     font-size: 1.25rem;
@@ -458,25 +488,9 @@ if (database.Icon && database.Icon.Type === 'file') {
     margin: 1.2em 0;
   }
 
+  /* 余白はPCだけ広め */
   div.content hr {
     margin: 2em 0;
-    background-color: #eee;
-  }
-
-  div.content a {
-    color: #2f80ed;
-    text-decoration: none;
-  }
-  div.content a:hover {
-    text-decoration: underline;
-  }
-
-  div.content code {
-    font-size: 0.95em;
-    color: #c7254e;
-    background: rgba(0, 0, 0, 0.06);
-    padding: 0.15rem 0.3rem;
-    border-radius: 4px;
   }
 
   div.content figure {
@@ -484,16 +498,12 @@ if (database.Icon && database.Icon.Type === 'file') {
     color: #888;
   }
 
-  /* 本文内の“画像ブロック”をまとめて制御（img / picture / svg / figure を全部対象） */
+  /* PCでは画像を小さめ（余白重視） */
   div.content .post-body :is(figure, picture, svg) {
     display: block;
     max-width: 60%;
     margin: 1.8em auto;
   }
+}
 
-  /* 画像キャプションを中央寄せ（本文内のみ） */
-  /* Notion/Markdown由来で figcaption ではなく p や div になる場合の保険 */
-  div.content .post-body figure > :is(p, div, span) {
-    text-align: center;
-  }
 </style>
