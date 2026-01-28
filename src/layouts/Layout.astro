@@ -462,6 +462,33 @@ div.content .post-body figure > :is(figcaption, p, div, span) {
   text-align: center;
 }
 
+/* ページトップボタン */
+.pagetop {
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  border: solid 2px var(--fg);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+.pagetop__arrow {
+  height: 10px;
+  width: 10px;
+  border-top: 3px solid var(--fg);
+  border-right: 3px solid var(--fg);
+  transform: translateY(20%) rotate(-45deg);
+}
+@media (hover: hover) and (pointer: fine) {
+    .pagetop:hover, .pagetop:hover .pagetop__arrow {
+      border-color: var(--accents-1);
+    }
+}
+
 /* ===== PCだけカスタマイズ（ここが本体） ===== */
 @media (min-width: 768px) {
   /* 本文の基準サイズを上げる（PCのみ） */
@@ -497,32 +524,5 @@ div.content .post-body figure > :is(figcaption, p, div, span) {
     margin: 1.8em auto;
   }
 
-  .pagetop {
-    height: 50px;
-    width: 50px;
-    position: fixed;
-    right: 30px;
-    bottom: 30px;
-    border: solid 2px var(--fg);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2;
-  }
-  
-  .pagetop__arrow {
-    height: 10px;
-    width: 10px;
-    border-top: 3px solid var(--fg);
-    border-right: 3px solid var(--fg);
-    transform: translateY(20%) rotate(-45deg);
-  }
-  
-  @media (hover: hover) and (pointer: fine) {
-      .pagetop:hover, .pagetop:hover .pagetop__arrow {
-        border-color: var(--accents-1);
-      }
-  }
 }
 </style>
