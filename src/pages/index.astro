@@ -27,7 +27,7 @@ const [posts, rankedPosts, tags, numberOfPages] = await Promise.all([
 ])
 ---
 
-<Layout>
+<Layout isHome={true}>
   <div slot="main" class={styles.main}>
     {
       posts.length === 0 ? (

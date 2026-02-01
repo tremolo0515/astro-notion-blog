@@ -12,9 +12,17 @@ export interface Props {
   description: string
   path: string
   ogImage: string
+  /* トップページの場合のみtrue */
+  isHome?: boolean
 }
 
-const { title = '', description = '', path = '/', ogImage = '' } = Astro.props
+const {
+  title = '',
+  description = '',
+  path = '/',
+  ogImage = '',
+  isHome = false,
+} = Astro.props
 
 const database = await getDatabase()
 
@@ -120,9 +128,11 @@ if (database.Icon && database.Icon.Type === 'file') {
                   }
                 </a>
               </h1>
-              <div class="description">
-                {database.Description}
-              </div>
+              {isHome && (
+                <div class="description">
+                  {database.Description}
+                </div>
+              )}
             </header>
 
             <slot name="main" />
