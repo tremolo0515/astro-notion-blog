@@ -1,0 +1,85 @@
+---
+import * as interfaces from '../lib/interfaces.ts'
+import { buildHeadingId } from '../lib/blog-helpers.ts'
+
+export interface Props {
+  headings: interfaces.Block[]
+}
+
+const { headings } = Astro.props
+---
+
+<nav class="post-toc" aria-label="目次">
+  <ol class="post-toc__list">
+    {
+      headings.map((headingBlock: interfaces.Block) => {
+        const heading =
+          headingBlock.Heading1 || headingBlock.Heading2 || headingBlock.Heading3
+
+        let indentClass = ''
+        if (headingBlock.Type === 'heading_2') {
+          indentClass = 'indent-1'
+        } else if (headingBlock.Type === 'heading_3') {
+          indentClass = 'indent-2'
+        }
+
+        return (
+          <li class={`post-toc__item ${indentClass}`}>
+            <a href={`#${buildHeadingId(heading)}`}>
+              {heading.RichTexts.map(
+                (richText: interfaces.RichText) => richText.PlainText
+              ).join('')}
+            </a>
+          </li>
+        )
+      })
+    }
+  </ol>
+</nav>
+
+<style>
+  .post-toc {
+    margin: 0 0 1.5rem;
+  }
+
+  .post-toc__title {
+    font-weight: 600;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+  @media (max-width: 640px) {
+    .post-toc__title {
+      font-size: 1.3rem;
+    }
+  }
+
+  .post-toc__list {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .post-toc__item {
+    line-height: 1.6rem;
+    font-size: 1rem;
+    color: var(--fg);
+  }
+
+  .post-toc__item a {
+    text-decoration: none;
+  }
+
+  .post-toc__item.indent-1 {
+    padding-left: 1.6rem;
+  }
+  .post-toc__item.indent-1 a::before {
+    content: '-';
+  }
+
+  .post-toc__item.indent-2 {
+    padding-left: 3.2rem;
+  }
+  .post-toc__item.indent-2 a::before {
+    content: '▸';
+  }
+</style>

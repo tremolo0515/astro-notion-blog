@@ -24,6 +24,7 @@ import PostBody from '../../components/PostBody.astro'
 import PostRelativeLink from '../../components/PostRelativeLink.astro'
 import BlogPostsLink from '../../components/BlogPostsLink.astro'
 import BlogTagsLink from '../../components/BlogTagsLink.astro'
+import PostTableOfContents from '../../components/PostTableOfContents.astro'
 import styles from '../../styles/blog.module.css'
 
 export async function getStaticPaths() {
@@ -47,6 +48,10 @@ const [blocks, allPosts, rankedPosts, recentPosts, tags, postsHavingSameTag] =
     getAllTags(),
     getPostsByTag(post.Tags[0]?.name, 6),
   ])
+
+const headings = blocks.filter((b: interfaces.Block) =>
+  ['heading_1', 'heading_2', 'heading_3'].includes(b.Type)
+)
 
 const fileAtacchedBlocks = extractTargetBlocks('image', blocks)
   .concat(extractTargetBlocks('file', blocks))
@@ -100,6 +105,7 @@ if (post.FeaturedImage && post.FeaturedImage.Url) {
   ogImage={ogImage}
 >
   <div slot="main" class={styles.main}>
+    {headings.length > 0 && <PostTableOfContents headings={headings} />}
     <div class={styles.post}>
       <PostDate post={post} />
       <PostTags post={post} />
@@ -125,4 +131,9 @@ if (post.FeaturedImage && post.FeaturedImage.Url) {
     {/* <BlogPostsLink heading="Latest posts" posts={recentPosts} /> */}
     <BlogTagsLink heading="タグ" tags={tags} />
   </div>
+  {headings.length > 0 && (
+    <div slot="toc">
+      <PostTableOfContents headings={headings} />
+    </div>
+  )}
 </Layout>
