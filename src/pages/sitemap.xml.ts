@@ -9,6 +9,13 @@ const xmlEscape = (text: string) =>
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&apos;')
 
+const ensureTrailingSlash = (url: URL) => {
+  if (!url.pathname.endsWith('/')) {
+    url.pathname = `${url.pathname}/`
+  }
+  return url.toString()
+}
+
 export async function GET() {
   const posts = await getAllPosts()
   const site = import.meta.env.SITE
@@ -17,9 +24,9 @@ export async function GET() {
     return new Response('SITE is not configured', { status: 500 })
   }
 
-  const staticUrls = [new URL('/', site).toString()]
+  const staticUrls = [ensureTrailingSlash(new URL('/', site))]
   const postUrls = posts.map((post) => ({
-    loc: new URL(getPostLink(post.Slug), site).toString(),
+    loc: ensureTrailingSlash(new URL(getPostLink(post.Slug), site)),
     lastmod: post.Date ? new Date(post.Date).toISOString() : undefined,
   }))
 
