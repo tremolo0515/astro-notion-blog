@@ -1,0 +1,60 @@
+---
+export interface Props {
+  href?: string
+}
+
+const { href = '' } = Astro.props
+const profileName = href ? `@${href.split('/').filter(Boolean).pop()}` : ''
+---
+
+{
+  href && (
+    <a
+      class="x-profile-link"
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Xプロフィールへのリンク"
+    >
+      <span class="label">筆者のXアカウント</span>
+      <span class="name">{profileName}</span>
+    </a>
+  )
+}
+
+<style>
+  .x-profile-link {
+    display: block;
+    padding-top: 0.85rem;
+    padding-left: 0.4rem;
+    color: #777;
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .label {
+    display: block;
+    margin: 0;
+    font-size: 0.95rem;
+    color: #777;
+    font-weight: 700;
+  }
+
+  .name {
+    display: inline-block;
+    margin-top: 0.35rem;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #4f4f4f;
+    border-bottom: 1px solid transparent;
+  }
+
+  .x-profile-link:hover {
+    color: #666;
+  }
+
+  .x-profile-link:hover .name {
+    color: #2f2f2f;
+    border-bottom-color: #9f9f9f;
+  }
+</style>
