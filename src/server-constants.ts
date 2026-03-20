@@ -7,7 +7,8 @@ export const CUSTOM_DOMAIN =
   import.meta.env.CUSTOM_DOMAIN || process.env.CUSTOM_DOMAIN || '' // <- Set your costom domain if you have. e.g. alpacat.com
 export const BASE_PATH =
   import.meta.env.BASE_PATH || process.env.BASE_PATH || '' // <- Set sub directory path if you want. e.g. /docs/
-export const SITE_NAME = import.meta.env.SITE_NAME || process.env.SITE_NAME || ''
+export const SITE_NAME =
+  import.meta.env.SITE_NAME || process.env.SITE_NAME || ''
 
 export const PUBLIC_GA_TRACKING_ID = import.meta.env.PUBLIC_GA_TRACKING_ID
 export const X_PROFILE_URL = import.meta.env.X_PROFILE_URL || ''
