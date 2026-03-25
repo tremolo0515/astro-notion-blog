@@ -41,7 +41,7 @@ const siteOGImage = new URL(
   Astro.site
 )
 
-let coverImageURL: string
+let coverImageURL: string = getStaticFilePath('/default-cover.png')
 if (database.Cover) {
   if (database.Cover.Type === 'external') {
     coverImageURL = database.Cover.Url
