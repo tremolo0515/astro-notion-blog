@@ -1,0 +1,122 @@
+---
+// ============================================================
+// SocialLinks.astro — サイドバーのSNSリンク一覧
+// ============================================================
+//
+// 【新しいSNSを追加するとき】
+//
+// 1. src/components/social-icons/ に IconXxx.astro を追加する
+//    - 既存の IconX.astro や IconYouTube.astro を参考にする
+//    - ファイル内に公式ロゴSVGと出典URLをコメントで記載する
+//
+// 2. このファイルの import セクションに追加する（下記参照）
+//
+// 3. 該当グループの <div class="icons"> 内に <a> タグを追加する
+//    - 既存の行をコピーして href・aria-label・アイコンを書き換えるだけ
+//
+// 【グループを追加するとき】
+//    既存の <div class="group"> ブロックをコピーして
+//    label と icons の中身を書き換える
+//
+// ============================================================
+
+// --- アイコン import ---
+import IconX from './social-icons/IconX.astro'
+import IconYouTube from './social-icons/IconYouTube.astro'
+// import IconInstagram from './social-icons/IconInstagram.astro' // ← Instagram開始時にコメントアウトを外す
+// import IconNote from './social-icons/IconNote.astro'           // ← Note開始時に追加
+---
+
+<div class="social-links">
+
+  <!-- グループ①: メイン（投資・自給自足テーマ） -->
+  <div class="group">
+    <span class="label">投資・自給自足</span>
+    <div class="icons">
+      <a href="https://x.com/ikkyu_capihack" target="_blank" rel="noopener noreferrer" aria-label="X @ikkyu_capihack">
+        <IconX />
+      </a>
+      <a href="https://www.youtube.com/@ikkyu_capitalismhack" target="_blank" rel="noopener noreferrer" aria-label="YouTube メインチャンネル">
+        <IconYouTube />
+      </a>
+      <!-- Instagram を追加する場合はここに挿入 -->
+      <!-- <a href="https://www.instagram.com/xxx" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <IconInstagram />
+      </a> -->
+    </div>
+  </div>
+
+  <!-- グループ②: ポケスリ（ゲームテーマ） -->
+  <div class="group">
+    <span class="label">ゲーム</span>
+    <div class="icons">
+      <a href="https://x.com/ikkyu_pokesle" target="_blank" rel="noopener noreferrer" aria-label="X @ikkyu_pokesle">
+        <IconX />
+      </a>
+      <a href="https://www.youtube.com/channel/UChpD1_fMfvvqZycdDeotLcA" target="_blank" rel="noopener noreferrer" aria-label="YouTube ポケスリチャンネル">
+        <IconYouTube />
+      </a>
+    </div>
+  </div>
+
+  <!-- グループ③: 新しいテーマを追加する場合はここにコピー -->
+  <!--
+  <div class="group">
+    <span class="label">テーマ名</span>
+    <div class="icons">
+      <a href="https://..." target="_blank" rel="noopener noreferrer" aria-label="サービス名 @アカウント名">
+        <IconXxx />
+      </a>
+    </div>
+  </div>
+  -->
+
+</div>
+
+<style>
+  .social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.85rem 0.4rem 0;
+  }
+
+  .group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  .label {
+    font-size: 0.95rem;
+    color: #777;
+    white-space: nowrap;
+    width: 6em;
+  }
+
+  .icons {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+
+  .icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    color: #777;
+    transition: color 0.15s ease;
+  }
+
+  .icons a:hover {
+    color: #333;
+  }
+
+  .icons :global(svg) {
+    width: 18px;
+    height: 18px;
+  }
+</style>
