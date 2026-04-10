@@ -155,7 +155,11 @@ if (database.Icon && database.Icon.Type === 'file') {
             <slot name="main" />
 
             <footer>
-              <div>
+              <div class="footer-links">
+                <a href="/posts/2e410347b6c5808c9a1ff1f471af0cd4">運営者情報</a>
+                <a href="/contact">お問い合わせ</a>
+              </div>
+              <div class="footer-credit">
                 <span>Powered by&nbsp;</span>
                 <a href="https://github.com/otoyo/astro-notion-blog"
                   >astro-notion-blog</a
@@ -325,6 +329,15 @@ if (database.Icon && database.Icon.Type === 'file') {
   main footer a {
     color: inherit;
     text-decoration: underline;
+  }
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .footer-credit {
+    color: #777;
   }
 </style>
 
